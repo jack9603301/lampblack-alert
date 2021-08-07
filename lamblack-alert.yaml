@@ -1,0 +1,110 @@
+esphome:
+  name: lampblack-alert
+  comment: Oil fume detection sensor for kitchen and alarm
+  platform: ESP8266
+  board: nodemcuv2
+  project:
+    name: alert.lampblack
+    version: 1.0.0
+  platformio_options:
+    upload_speed: 115200
+  includes:
+    - status_ext_led.h
+
+custom_component:
+- lambda: |-
+    auto status_ext_led = new Status_ext_ledComponent();
+    return {status_ext_led};
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+mqtt:
+  id: mqtt_client
+  broker: ""
+  username: ""
+  password: ""
+  discovery: true
+  birth_message:
+    topic: lampblack-alert/status
+    payload: online
+  will_message:
+    topic: lampblack-alert/status
+    payload: offline
+  
+i2c:
+  sda: D2
+  scl: D3
+
+ota:
+  safe_mode: true
+  password: "jack960330"
+
+wifi:
+  ssid: ""
+  password: ""
+
+  manual_ip:
+    static_ip: 192.168.101.5
+    gateway: 192.168.101.1
+    subnet: 255.255.255.0
+    dns1: 192.168.101.254
+    dns2: 192.168.101.1
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "lampblack-alert"
+    password: ""
+
+captive_portal:
+
+web_server:
+  port: 80
+
+status_led:
+  pin:
+    number: D4
+    inverted: true
+
+sensor:
+  - platform: adc
+    pin: A0
+    name: "lampblack"
+    id: lampblack
+    update_interval: 60s
+    device_class: ""
+    state_class: "measurement"
+    unit_of_measurement: ppm
+    filters:
+      - multiply: 5.0
+
+display:
+  - platform: lcd_pcf8574
+    id: frontend
+    dimensions: 20x4
+    address: 0x27
+    lambda: |-
+      if(id(mqtt_client)->is_connected()) {
+        it.strftime("%Y-%m-%d %H:%M", id(system_time).now());
+        it.printf(0,1,"Sensor: %.1f", id(lampblack).state);
+      } else {
+        it.print(0,0,"System Booting...");
+      }
+
+switch:
+  - platform: restart
+    name: "lampblack_restart"
+  - platform: template
+    name: "backlight_ctl"
+    turn_on_action:
+      - lambda: |-
+          id(frontend).backlight();
+    turn_off_action:
+      - lambda: |-
+          id(frontend).no_backlight();
+    optimistic: true
+    assumed_state: true
+
+time:
+  - platform: sntp
+    id: system_time
