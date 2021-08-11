@@ -77,6 +77,9 @@ sensor:
     unit_of_measurement: ppm
     filters:
       - multiply: 5.0
+  - platform: wifi_signal
+    name: "lampblack WiFi Signal Sensor"
+    update_interval: 60s
 
 display:
   - platform: lcd_pcf8574
@@ -104,6 +107,19 @@ switch:
           id(frontend).no_backlight();
     optimistic: true
     assumed_state: true
+
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: Lampblack IP Address
+    ssid:
+      name: Lampblack Connected SSID
+    bssid:
+      name: Lampblack Connected BSSID
+    mac_address:
+      name: Lampblack Mac Wifi Address
+  - platform: version
+    name: Lampblack Version
 
 time:
   - platform: sntp
