@@ -16,8 +16,11 @@ custom_component:
     auto status_ext_led = new Status_ext_ledComponent();
     return {status_ext_led};
 
-# Enable logging
+debug:
+
+# Logger must be at least debug (default)
 logger:
+  level: debug
 
 # Enable Home Assistant API
 mqtt:
@@ -81,6 +84,10 @@ sensor:
   - platform: wifi_signal
     name: "lampblack WiFi Signal Sensor"
     update_interval: 60s
+
+binary_sensor:
+  - platform: status
+    name: "lampblack Status"
 
 display:
   - platform: lcd_pcf8574
