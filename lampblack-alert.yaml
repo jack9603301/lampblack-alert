@@ -74,13 +74,14 @@ sensor:
     pin: A0
     name: "lampblack"
     id: lampblack
-    update_interval: 60s
+    update_interval: 1s
     device_class: ""
     state_class: "measurement"
     unit_of_measurement: ppm
     filters:
-      - multiply: 5.0
-      - lambda: return 100 * (x - 0.5) / 4.5;
+      - multiply: 4.85
+      - lambda: return 100 * (x - 0.5) / 4;
+      - offset: 1.6
   - platform: wifi_signal
     name: "lampblack WiFi Signal Sensor"
     update_interval: 60s
