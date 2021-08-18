@@ -42,7 +42,7 @@ i2c:
 
 ota:
   safe_mode: true
-  password: "jack960330"
+  password: ""
 
 wifi:
   ssid: ""
@@ -106,16 +106,6 @@ display:
 switch:
   - platform: restart
     name: "lampblack_restart"
-  - platform: template
-    name: "backlight_ctl"
-    turn_on_action:
-      - lambda: |-
-          id(frontend).backlight();
-    turn_off_action:
-      - lambda: |-
-          id(frontend).no_backlight();
-    optimistic: true
-    assumed_state: true
 
 text_sensor:
   - platform: wifi_info
@@ -129,6 +119,21 @@ text_sensor:
       name: Lampblack Mac Wifi Address
   - platform: version
     name: Lampblack Version
+  - platform: mqtt_subscribe
+    name: "backlight_ctl"
+    internal: true
+    id: backlight_ctl
+    topic: home/kitchen/lampblack/backlight_ctl/set
+    on_value:
+      then:
+         - lambda: |-
+             if(x == "ON") {
+               id(frontend).backlight();
+             } else if(x == "OFF")  {
+               id(frontend).no_backlight();
+             }
+
+             id(mqtt_client).publish("home/kitchen/lampblack/backlight_ctl", x.c_str());
 
 time:
   - platform: sntp
