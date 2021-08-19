@@ -1,0 +1,141 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 2
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector:Conn_01x01_Male J3
+U 1 1 61234C32
+P 2800 1450
+F 0 "J3" H 2772 1382 50  0000 R CNN
+F 1 "0-3VADC" H 2772 1473 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 2800 1450 50  0001 C CNN
+F 3 "~" H 2800 1450 50  0001 C CNN
+	1    2800 1450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2250 1450 2250 1600
+Wire Wire Line
+	2600 1450 2250 1450
+Connection ~ 2250 1450
+Wire Wire Line
+	2250 1400 2250 1450
+Text Label 900  1200 0    50   ~ 0
+TGS2600:AOUT
+$Comp
+L Connector:Conn_01x01_Male J2
+U 1 1 61217DF3
+P 1100 2050
+F 0 "J2" H 1208 2231 50  0000 C CNN
+F 1 "GND" H 1208 2140 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 1100 2050 50  0001 C CNN
+F 3 "~" H 1100 2050 50  0001 C CNN
+	1    1100 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x01_Male J1
+U 1 1 612158B1
+P 1050 1050
+F 0 "J1" H 1158 1231 50  0000 C CNN
+F 1 "0-5VADC" H 1158 1140 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 1050 1050 50  0001 C CNN
+F 3 "~" H 1050 1050 50  0001 C CNN
+	1    1050 1050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2250 1050 2250 1100
+$Comp
+L Device:R R1
+U 1 1 611D2A87
+P 2250 1250
+F 0 "R1" H 2320 1296 50  0000 L CNN
+F 1 "10k" H 2320 1205 50  0000 L CNN
+F 2 "Resistors_ThroughHole:R_Axial_DIN0204_L3.6mm_D1.6mm_P1.90mm_Vertical" V 2180 1250 50  0001 C CNN
+F 3 "~" H 2250 1250 50  0001 C CNN
+	1    2250 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 611D2D7F
+P 2250 1750
+F 0 "R2" H 2320 1796 50  0000 L CNN
+F 1 "20k" H 2320 1705 50  0000 L CNN
+F 2 "Resistors_ThroughHole:R_Axial_DIN0204_L3.6mm_D1.6mm_P1.90mm_Vertical" V 2180 1750 50  0001 C CNN
+F 3 "~" H 2250 1750 50  0001 C CNN
+	1    2250 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2250 1900 2250 2050
+Wire Wire Line
+	1250 1050 2250 1050
+$Comp
+L Connector:Conn_01x01_Male J4
+U 1 1 6124BCBE
+P 2850 2050
+F 0 "J4" H 2822 1982 50  0000 R CNN
+F 1 "GND" H 2822 2073 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 2850 2050 50  0001 C CNN
+F 3 "~" H 2850 2050 50  0001 C CNN
+	1    2850 2050
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2250 2050 2650 2050
+Connection ~ 2250 2050
+Wire Wire Line
+	1300 2050 2250 2050
+$Sheet
+S 3850 1000 2250 1400
+U 611E5C53
+F0 "Sheet611E5C52" 50
+F1 "LM8705.sch" 50
+$EndSheet
+$Comp
+L Regulator_Linear:LM7805_TO220 U1
+U 1 1 611E649C
+P 4900 1400
+F 0 "U1" H 4900 1642 50  0000 C CNN
+F 1 "LM7805" H 4900 1551 50  0000 C CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 4900 1625 50  0001 C CIN
+F 3 "http://www.fairchildsemi.com/ds/LM/LM7805.pdf" H 4900 1350 50  0001 C CNN
+	1    4900 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x02_Male J?
+U 1 1 611E78AE
+P 4050 1400
+F 0 "J?" H 4158 1581 50  0000 C CNN
+F 1 "+9V" H 4158 1490 50  0000 C CNN
+F 2 "" H 4050 1400 50  0001 C CNN
+F 3 "~" H 4050 1400 50  0001 C CNN
+	1    4050 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 611E7ED8
+P 4300 1850
+F 0 "#PWR?" H 4300 1600 50  0001 C CNN
+F 1 "GND" H 4305 1677 50  0000 C CNN
+F 2 "" H 4300 1850 50  0001 C CNN
+F 3 "" H 4300 1850 50  0001 C CNN
+	1    4300 1850
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC

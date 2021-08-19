@@ -1,0 +1,8 @@
+– platform: mqtt
+  name: 油烟传感器背光控制
+  command_topic: “home/kitchen/lampblack/backlight_ctl/set”
+  state_topic: “home/kitchen/lampblack/backlight_ctl”
+  payload_on: “ON”
+  payload_off: “OFF”
+  state_on: “ON”
+  state_off: “OFF”

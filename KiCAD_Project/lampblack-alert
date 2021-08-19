@@ -1,0 +1,33 @@
+.HEA
+.TIM 2021年08月19日 星期四 01时36分25秒
+.APP "Eeschema 5.1.6+dfsg1-1"
+
+.ADD_COM J4 9V  Connector_PinHeader_2.54mm:PinHeader_2x01_P2.54mm_Vertical
+.ADD_COM C2 10uF 16V  Capacitors_ThroughHole:CP_Axial_L10.0mm_D4.5mm_P15.00mm_Horizontal
+.ADD_COM U1 LM7805  Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical
+.ADD_COM C1 100uF 25V  Capacitors_ThroughHole:CP_Axial_L10.0mm_D4.5mm_P15.00mm_Horizontal
+.ADD_COM J3 0-3VADC  Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical
+.ADD_COM J2 GND  Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical
+.ADD_COM J1 0-5VADC  Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical
+.ADD_COM R1 10k  Resistors_ThroughHole:R_Axial_DIN0204_L3.6mm_D1.6mm_P1.90mm_Vertical
+.ADD_COM R2 20k  Resistors_ThroughHole:R_Axial_DIN0204_L3.6mm_D1.6mm_P1.90mm_Vertical
+
+
+.ADD_TER R2.1  Net-(J3-Pad1)
+.TER     R1.2
+         J3.1
+.ADD_TER R1.1  Net-(J1-Pad1)
+.TER     J1.1
+.ADD_TER J4.2  GND
+.TER     C2.2
+         U1.2
+         C1.2
+         R2.2
+         J2.1
+.ADD_TER C2.1  +5V
+.TER     U1.3
+.ADD_TER J4.1  Net-(C1-Pad1)
+.TER     C1.1
+         U1.1
+
+.END

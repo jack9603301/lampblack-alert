@@ -1,0 +1,24 @@
+.HEA
+.TIM 2021年08月19日 星期四 18时31分32秒
+.APP "Eeschema 5.1.6+dfsg1-1"
+
+.ADD_COM U1 LM7805  Package_TO_SOT_THT:TO-220-3_Vertical
+.ADD_COM J1 VCC +9V  Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical
+.ADD_COM J2 GND  Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical
+.ADD_COM C1 200uF/25V
+.ADD_COM C2 10uF/16V
+.ADD_COM J3 GND  Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical
+
+
+.ADD_TER U1.3  +5V
+.TER     C2.1
+.ADD_TER U1.2  GND
+.TER     J2.1
+         C1.2
+         J3.1
+         C2.2
+.ADD_TER J1.1  Net-(C1-Pad1)
+.TER     C1.1
+         U1.1
+
+.END

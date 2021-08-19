@@ -1,0 +1,993 @@
+[
+    {
+        "id": "174b51c.d7bd3ae",
+        "type": "group",
+        "z": "693cee39.d45af",
+        "name": "油烟",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "f18bfe36.06fb88",
+            "d478ce7a.0a10f8",
+            "35901cb713be13d4",
+            "66673a68930b495f",
+            "2b4e225396df09f5",
+            "f2d4bdb86a889e9a",
+            "55a5cabe4e031a6a",
+            "6a2dfdb29254b4f8",
+            "1695652c9f622c78",
+            "03ec607eb7801fc3",
+            "f9e7ae09d000adfa",
+            "7255edefed08d4fe",
+            "983d6f01669809cd",
+            "96f4ac0a46cfa49b",
+            "72bb77b5a3a0b0da",
+            "a65f5239c50bfbc0",
+            "32f5ec3c6cf8b4cf",
+            "7fdac22db5ee6b02",
+            "acb69f7d18961b7f",
+            "1491e89a90f76316",
+            "8507f42368354dea",
+            "e03e6ac38d6e004e",
+            "882ba4576c867324"
+        ],
+        "x": 14,
+        "y": 579,
+        "w": 1632,
+        "h": 802
+    },
+    {
+        "id": "f18bfe36.06fb88",
+        "type": "mqtt in",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "",
+        "topic": "lampblack-alert/status",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "6170f2b1.2e2f14",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 160,
+        "y": 760,
+        "wires": [
+            [
+                "d478ce7a.0a10f8"
+            ]
+        ]
+    },
+    {
+        "id": "d478ce7a.0a10f8",
+        "type": "switch",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "online",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "offline",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 450,
+        "y": 760,
+        "wires": [
+            [
+                "96f4ac0a46cfa49b"
+            ],
+            [
+                "32f5ec3c6cf8b4cf"
+            ]
+        ]
+    },
+    {
+        "id": "35901cb713be13d4",
+        "type": "server-state-changed",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "油烟浓度",
+        "server": "3c87f99d.1fa9b6",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.lampblack",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "num",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 900,
+        "wires": [
+            [
+                "66673a68930b495f"
+            ]
+        ]
+    },
+    {
+        "id": "66673a68930b495f",
+        "type": "api-current-state",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "查询上限",
+        "server": "3c87f99d.1fa9b6",
+        "version": 2,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_number.you_yan_ji_qi_dong_shang_xian",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "max",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "max_data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 340,
+        "y": 900,
+        "wires": [
+            [
+                "2b4e225396df09f5"
+            ]
+        ]
+    },
+    {
+        "id": "2b4e225396df09f5",
+        "type": "api-current-state",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "查询上限",
+        "server": "3c87f99d.1fa9b6",
+        "version": 2,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_number.you_yan_ji_guan_bi_xia_xian",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "min",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "min_data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 560,
+        "y": 900,
+        "wires": [
+            [
+                "f2d4bdb86a889e9a"
+            ]
+        ]
+    },
+    {
+        "id": "f2d4bdb86a889e9a",
+        "type": "switch",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "比较阀值",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "max",
+                "vt": "msg"
+            },
+            {
+                "t": "lte",
+                "v": "min",
+                "vt": "msg"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 760,
+        "y": 900,
+        "wires": [
+            [
+                "6a2dfdb29254b4f8"
+            ],
+            [
+                "1695652c9f622c78"
+            ]
+        ]
+    },
+    {
+        "id": "55a5cabe4e031a6a",
+        "type": "ha-entity",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "油烟机自动控制状态指示",
+        "server": "3c87f99d.1fa9b6",
+        "version": 1,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "binary_sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "油烟机自动控制状态指示"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            }
+        ],
+        "state": "payload",
+        "stateType": "msg",
+        "attributes": [],
+        "resend": true,
+        "outputLocation": "",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 1250,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6a2dfdb29254b4f8",
+        "type": "change",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "指示启动油烟机",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "current",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 950,
+        "y": 840,
+        "wires": [
+            [
+                "55a5cabe4e031a6a",
+                "7255edefed08d4fe"
+            ]
+        ]
+    },
+    {
+        "id": "1695652c9f622c78",
+        "type": "change",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "指示关闭油烟机",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "current",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 960,
+        "wires": [
+            [
+                "55a5cabe4e031a6a",
+                "983d6f01669809cd"
+            ]
+        ]
+    },
+    {
+        "id": "03ec607eb7801fc3",
+        "type": "api-call-service",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "发送开启通知",
+        "server": "3c87f99d.1fa9b6",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "persistent_notification",
+        "service": "create",
+        "entityId": "",
+        "data": "{\"message\":\"当前油烟/空气质量浓度：{{current}} ppm，设备应自动开启!\",\"title\":\"设备控制\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1540,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f9e7ae09d000adfa",
+        "type": "api-call-service",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "发送关闭通知",
+        "server": "3c87f99d.1fa9b6",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "persistent_notification",
+        "service": "create",
+        "entityId": "",
+        "data": "{\"message\":\"当前油烟/空气质量浓度：{{current}} ppm，设备应自动关闭!\",\"title\":\"设备控制\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1540,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7255edefed08d4fe",
+        "type": "api-current-state",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "查询油烟机自动控制状态指示",
+        "server": "3c87f99d.1fa9b6",
+        "version": 2,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "binary_sensor.nodered_55a5cabe4e031a6a",
+        "state_type": "habool",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1260,
+        "y": 760,
+        "wires": [
+            [],
+            [
+                "03ec607eb7801fc3"
+            ]
+        ]
+    },
+    {
+        "id": "983d6f01669809cd",
+        "type": "api-current-state",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "查询油烟机自动控制状态指示",
+        "server": "3c87f99d.1fa9b6",
+        "version": 2,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "binary_sensor.nodered_55a5cabe4e031a6a",
+        "state_type": "habool",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1260,
+        "y": 1060,
+        "wires": [
+            [
+                "f9e7ae09d000adfa"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "96f4ac0a46cfa49b",
+        "type": "api-call-service",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "启动背光板",
+        "server": "3c87f99d.1fa9b6",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.you_yan_chuan_gan_qi_bei_guang_kong_zhi",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 670,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "72bb77b5a3a0b0da",
+        "type": "api-call-service",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "关闭背光板",
+        "server": "3c87f99d.1fa9b6",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.you_yan_chuan_gan_qi_bei_guang_kong_zhi",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 970,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a65f5239c50bfbc0",
+        "type": "server-state-changed",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "背光板控制",
+        "server": "3c87f99d.1fa9b6",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "switch.you_yan_chuan_gan_qi_bei_guang_kong_zhi",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "1",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 640,
+        "wires": [
+            [
+                "72bb77b5a3a0b0da"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "32f5ec3c6cf8b4cf",
+        "type": "api-call-service",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "关闭背光板",
+        "server": "3c87f99d.1fa9b6",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.you_yan_chuan_gan_qi_bei_guang_kong_zhi",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 670,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7fdac22db5ee6b02",
+        "type": "server-state-changed",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "厨房油烟机状态指示",
+        "server": "3c87f99d.1fa9b6",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.nodered_55a5cabe4e031a6a",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 130,
+        "y": 1140,
+        "wires": [
+            [
+                "8507f42368354dea"
+            ],
+            [
+                "e03e6ac38d6e004e"
+            ]
+        ]
+    },
+    {
+        "id": "acb69f7d18961b7f",
+        "type": "ha-device",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "开启油烟机",
+        "server": "3c87f99d.1fa9b6",
+        "version": 0,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "inputs": 1,
+        "deviceType": "action",
+        "device": "b392c6d5e437bd51177b6a18e7a2f13f",
+        "event": {
+            "type": "turn_on",
+            "device_id": "b392c6d5e437bd51177b6a18e7a2f13f",
+            "entity_id": "switch.6ca6b4d7aa5d6528844x9d",
+            "domain": "switch"
+        },
+        "capabilities": [],
+        "outputProperties": [],
+        "x": 660,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1491e89a90f76316",
+        "type": "ha-device",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "关闭油烟机",
+        "server": "3c87f99d.1fa9b6",
+        "version": 0,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "inputs": 1,
+        "deviceType": "action",
+        "device": "b392c6d5e437bd51177b6a18e7a2f13f",
+        "event": {
+            "type": "turn_off",
+            "device_id": "b392c6d5e437bd51177b6a18e7a2f13f",
+            "entity_id": "switch.6ca6b4d7aa5d6528844x9d",
+            "domain": "switch"
+        },
+        "capabilities": [],
+        "outputProperties": [],
+        "x": 660,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8507f42368354dea",
+        "type": "api-current-state",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "是否进行自动控制",
+        "server": "3c87f99d.1fa9b6",
+        "version": 2,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.zi_dong_kong_zhi_you_yan_ji",
+        "state_type": "habool",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 360,
+        "y": 1100,
+        "wires": [
+            [
+                "acb69f7d18961b7f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e03e6ac38d6e004e",
+        "type": "api-current-state",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "是否进行自动控制",
+        "server": "3c87f99d.1fa9b6",
+        "version": 2,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.zi_dong_kong_zhi_you_yan_ji",
+        "state_type": "habool",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 350,
+        "y": 1200,
+        "wires": [
+            [
+                "1491e89a90f76316"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "882ba4576c867324",
+        "type": "server-state-changed",
+        "z": "693cee39.d45af",
+        "g": "174b51c.d7bd3ae",
+        "name": "自动控制状态改变",
+        "server": "3c87f99d.1fa9b6",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.zi_dong_kong_zhi_you_yan_ji",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 130,
+        "y": 1340,
+        "wires": [
+            [
+                "1491e89a90f76316"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6170f2b1.2e2f14",
+        "type": "mqtt-broker",
+        "name": "HomeAssistant",
+        "broker": "[fc00:470:f1cd::ff00]",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "3c87f99d.1fa9b6",
+        "type": "server",
+        "name": "Home Assistant",
+        "version": 1,
+        "legacy": false,
+        "addon": false,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    }
+]
+
